@@ -1,5 +1,6 @@
 process DOWNLOAD_SCRIPT {
     tag "${script_url}"
+    publishDir "results/download"
 
     input:
     val script_url
@@ -16,6 +17,7 @@ process DOWNLOAD_SCRIPT {
 
 process CLEAN_SCRIPT {
     tag "${html_script_path}"
+    publishDir "results/clean"
 
     input:
     path html_script_path
@@ -32,6 +34,7 @@ process CLEAN_SCRIPT {
 
 process PICK_RANDOM_LINE {
     tag "${clean_script_path}"
+    publishDir "results/quote"
 
     input:
     path clean_script_path
