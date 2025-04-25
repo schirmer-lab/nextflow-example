@@ -5,7 +5,7 @@ import re
 import sys
 
 
-def pick_random_line(cleaned_script_path: str, output_path: str, min_word_count) -> None:
+def pick_random_line(cleaned_script_path: str, min_word_count: int) -> None:
     with open(cleaned_script_path, 'r') as cleaned_script:
         all_lines = cleaned_script.readlines()
 
@@ -27,8 +27,7 @@ def pick_random_line(cleaned_script_path: str, output_path: str, min_word_count)
         line_index += 1
         line_to_return += all_lines[line_index]
 
-    with open(output_path, "w") as output:
-        output.write(line_to_return)
+    print(line_to_return)
 
 
 def word_count(line: str) -> int:
@@ -42,4 +41,4 @@ def include_previous_line(all_lines: list, line_index: int) -> bool:
 
 
 if __name__ == "__main__":
-    pick_random_line(sys.argv[1], sys.argv[2], int(sys.argv[3]))
+    pick_random_line(sys.argv[1], int(sys.argv[2]))

@@ -42,10 +42,10 @@ process PICK_RANDOM_LINE {
     val min_words
 
     output:
-    path "${quote_file_name}.txt"
+    stdout
 
     script:
     """
-    python3 ${baseDir}/bin/pick_random_line.py "${clean_script_path}" "${quote_file_name}.txt" ${min_words}
+    python3 ${baseDir}/bin/pick_random_line.py "${clean_script_path}" ${min_words}
     """
 }
