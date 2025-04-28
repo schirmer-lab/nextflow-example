@@ -1,4 +1,4 @@
-# HolyQuote
+# nextflow-holy-grail-example
 
 This is a fun little project to get familiar with [Nextflow](https://www.nextflow.io/).
 
