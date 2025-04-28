@@ -19,7 +19,14 @@ it will:
 
 These steps are connected using Nextflow processes and workflows.
 
-
+---
+## Customizing the quote length
+You can adjust the minimum number of words for the selected quote by using the --min_words parameter.
+For example, to require a quote with at least 10 words:
+```
+nextflow run . --min_words 10
+```
+---
 Enjoy - and remember:
 ```
  GUARD #2:  It could be carried by an African swallow!
