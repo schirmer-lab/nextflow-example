@@ -21,11 +21,19 @@ These steps are connected using Nextflow processes and workflows.
 
 ---
 ## Customizing the quote length
-You can adjust the minimum number of words for the selected quote by using the --min_words parameter.
+You can adjust the minimum number of words for the selected quote by using the `--min_words parameter`.
 For example, to require a quote with at least 10 words:
 ```
 nextflow run . --min_words 10
 ```
+---
+## Project Structure
+- The starting point for this project is `main.nf`, where the holy-grail workflow is initiated.
+- All workflows are located in the `workflows` directory.
+- Each workflow consists of several subworkflows, which are organized in the `subworkflows` directory.
+- In this example, the holy workflow consists of the `DOWNLOAD_AND_CLEAN_SCRIPT` and `PICK_LINE` subworkflows.
+- The single steps of the subworkflows are located in the `modules` folder.
+- The modules use Python and Bash scripts, which are stored in the `bin` directory.
 ---
 Enjoy - and remember:
 ```
