@@ -2,8 +2,8 @@
 
 nextflow.enable.dsl = 2
 
-include { holy_workflow } from './workflows/holy_grail_workflow'
+include { HOLY_WORKFLOW } from './workflows/holy_grail_workflow'
 
 workflow  {
-    holy_workflow()
+    HOLY_WORKFLOW()
 }
