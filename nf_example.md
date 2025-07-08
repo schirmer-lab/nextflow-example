@@ -4,7 +4,7 @@
 This explanantion aims to introcude the essential ideas and principles of [Nextflow](https://www.nextflow.io/docs/latest/index.html) with the help of this fun little project called HolyQuote.
 
 ## Nextflow
-Nextflow is a tool that makes it easy to build and run automated workflows. It handles parallel processing across computers or clouds, and uses containers to keep everything consistent and reproducible.
+Nextflow is a tool that makes it easy to build and run automated workflows. It handles parallel processing across computers or clouds, and uses containers to keep everything consistent and reproducible. Check the whole documentation [here](https://nextflow.io/docs/latest/index.html)
 
 ## HolyQuote
 HolyQuote is a toy project that 
@@ -167,3 +167,40 @@ Nextflow logs everything in `.nextflow.log` in the cwd. It always kepps the last
 [06/d9287b] HOLY_WORKFLOW:PICK_LINE:PICK_RANDOM_LINE (holy_script.txt)                                                          [100%] 1 of 1 ✔
 ```
 the hashcode for the tasks are the `07/434a71`, `59/5011e1` and `06/d9287b` respectively. If you now check the `work` folder in your cwd, you will notice folders named like the hashcode. Here you can finde more detailed logs for each step. Furthermore they can be used to use already existing results for the next execution of the pipeline, by setting the `--resume` flag in the `run` command.
+
+## Extra: nf-core
+
+[nf-core](https://nf-co.re/) is a collection of pipelines built with nextflow that follow a certain template. For set up and more information check their [docs](https://nf-co.re/docs/).
+
+### Use nf-core
+To create a new nf-core pipeline you just need the `create` command:
+```bash
+nf-core pipelines create
+```
+
+Now nf-core allows you two things:
+1. Run a predfined pipeline, which can be found [here](https://nf-co.re/pipelines) or with the `nf-core pipelines list` command. After choosing a pipeline it can be run with:
+    ```
+    nf-core pipelines launch <pipeline>
+    ```
+2. Install modules to help your nf-core project. These can be found [here](https://nf-co.re/modules).
+    ```bash
+    nf-core modules install <module>
+    ```
+    The module can then be found in `modules/nf-core` and at the end of the installation you will finde a message like this to tell you how ti include it:
+    ```nextflow
+    include { <module> } from '../modules/nf-core/<module>/main'
+    ```
+### nf-core configs
+In addition to the `nextflow.config` *nf-core* uses additional conig files stored in the `conf` dir:
+- `base.config`: Defines default process settings and resource allocations, like memory and maximum time.
+- `modules.config`: Defines per module options and publishing paths
+  - important argument `ext.args`: Add more arguments to the execution of modules. Fo example changing FASTQC to quiet mode:
+      ```
+      process {
+        withName: FASTQC {
+            ext.args = '--quiet'
+        }
+      }
+      ```
+- `test.config` and `test_full.config` define tests for your pipeline
